@@ -70,6 +70,7 @@ module OmniAuth
       end
 
       def request_phase
+        puts callback_url
         %w[show_dialog].each do |v|
           if request.params[v]
             options[:authorize_params][v.to_sym] = request.params[v]
