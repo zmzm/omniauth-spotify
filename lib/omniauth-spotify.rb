@@ -70,6 +70,7 @@ module OmniAuth
       end
 
       def request_phase
+        puts 'CALLBACK'
         puts callback_url
         %w[show_dialog].each do |v|
           if request.params[v]
