@@ -84,7 +84,7 @@ module OmniAuth
       def callback_url
          puts 'CODE'
          puts request.params['code']
-         #full_host + script_name + callback_path
+         full_host + script_name + callback_path
       end
     end
   end
