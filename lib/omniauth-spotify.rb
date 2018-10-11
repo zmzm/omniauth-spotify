@@ -74,7 +74,7 @@ module OmniAuth
       end
 
       def request_phase
-        redirecting_to = options.client_options.authorize_url+'?client_id='+options.app_id+'&response_type=code&redirect_uri='+callback_url+'&scope='+options.scope
+        redirecting_to = options.client_options.authorize_url+'?client_id=fbae055be461411b93e45f8c0ccc4ff0&response_type=code&redirect_uri='+callback_url+'&scope='+options.scope
         puts 'REDIRECTING'
         puts redirecting_to
         redirect redirecting_to
