@@ -74,17 +74,21 @@ module OmniAuth
       end
 
       def request_phase
-        redirecting_to = options.client_options.authorize_url+'?client_id=fbae055be461411b93e45f8c0ccc4ff0&response_type=code&redirect_uri='+callback_url+'&scope='+options.scope
-        puts 'REDIRECTING'
-        puts redirecting_to
-        redirect redirecting_to
+        %w[show_dialog].each do |v|
+          if request.params[v]
+            options[:authorize_params][v.to_sym] = request.params[v]
+          end
+        end
         super
       end
 
       def callback_url
-         puts 'CODE'
-         puts request.params['code']
-         full_host + script_name + callback_path
+        if @authorization_code_from_signed_request_in_cookie
+          ''
+        else
+          # Fixes regression in omniauth-oauth2 v1.4.0 by https://github.com/intridea/omniauth-oauth2/commit/85fdbe117c2a4400d001a6368cc359d88f40abc7
+          options[:callback_url] || (full_host + script_name + callback_path)
+        end
       end
     end
   end
